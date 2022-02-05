@@ -1,4 +1,5 @@
 from blockchain import Blockchain
 
-blockchain = Blockchain() # create genesis block
-print(blockchain.chain)
+if __name__ == "__main__":
+    blockchain = Blockchain() # create genesis block
+    print(blockchain.chain)
