@@ -14,11 +14,11 @@ class Blockchain:
         Create block in blockchain network and keep components of each block
 
         Parameters:
-        nonce: Value to prove the hash number
-        previuos_hash: hash of the previous hash
+            nonce: Value to prove the hash number
+            previuos_hash: hash of the previous hash
 
         Returns: 
-
+            dict block
         """
         block = {
             "index": len(self.chain) + 1,
@@ -29,3 +29,7 @@ class Blockchain:
         
         self.chain.append(block)
         return block
+
+    def get_previous_block(self):
+        """Get the previous block"""
+        return self.chain[-1]
