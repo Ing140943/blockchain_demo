@@ -2,8 +2,8 @@ import datetime
 
 class Blockchain:
     
+
     # Constructor for blockchain class
-    
     def __init__(self):
         """Contain group of blocks"""
         self.chain = [] # list to contain block
