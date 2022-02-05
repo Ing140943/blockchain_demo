@@ -1,4 +1,6 @@
 import datetime
+import json # some function in this module can apply with dictionary in python
+import hashlib
 
 class Blockchain:
     
@@ -25,7 +27,7 @@ class Blockchain:
             "timestamp": str(datetime.datetime.now()),
             "nonce": nonce,
             "previous_hash": previous_hash
-            }
+        }
         
         self.chain.append(block)
         return block
@@ -33,3 +35,9 @@ class Blockchain:
     def get_previous_block(self):
         """Get the previous block"""
         return self.chain[-1]
+        
+    def hash(self, block):
+        """Encode the block, order the key attribut in the list and traslate \
+            from python object (dict) => json object"""
+        encode_block = json.dumps(block, sort_keys=True).encode() # from python object (dict) => json object
+        return hashlib.sha256(encode_block).hexdigest()           # .sha256 => apply with sha 256 format, hexdigest = เลขฐาน 16
