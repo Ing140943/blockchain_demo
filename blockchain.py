@@ -9,7 +9,9 @@ class Blockchain:
     def __init__(self):
         """Contain group of blocks"""
         self.chain = [] # list to contain block
-        self.create_block(nonce=1, previous_hash=0)  #genesis block
+        self.create_block(nonce=1, previous_hash="0")  #genesis block
+        # self.create_block(nonce=10, previous_hash="00")  #genesis block
+        # self.create_block(nonce=20, previous_hash="000")  #genesis block
     
     def create_block(self, nonce, previous_hash):
         """
