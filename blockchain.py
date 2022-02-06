@@ -41,3 +41,20 @@ class Blockchain:
             from python object (dict) => json object"""
         encode_block = json.dumps(block, sort_keys=True).encode() # from python object (dict) => json object
         return hashlib.sha256(encode_block).hexdigest()           # .sha256 => apply with sha 256 format, hexdigest = เลขฐาน 16
+
+    def proof_of_work(self, previous_nonce):
+        """Find the nonce value that can get the target hash
+           first four digits => 0000xxxxxxxx"""
+        new_nonce = 1 # nonce value that we want
+        check_proof = False # variable to check nonce value must be close to target hash
+
+        # solve mathematic problem
+        while check_proof is False:
+            # 1 set of hexadecimal number
+            hash_operation = hashlib.sha256(str(new_nonce**2 - previous_nonce**2).endcode()).hexdigest()
+            if hash_operation[:4] == "0000":
+                check_proof = True
+            else:
+                new_nonce += 1
+        return new_nonce
+
