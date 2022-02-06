@@ -53,7 +53,7 @@ class Blockchain:
         # solve mathematic problem
         while check_proof is False:
             # 1 set of hexadecimal number
-            hash_operation = hashlib.sha256(str(new_nonce**2 - previous_nonce**2).endcode()).hexdigest()
+            hash_operation = hashlib.sha256(str(new_nonce**2 - previous_nonce**2).encode()).hexdigest()
             if hash_operation[:4] == "0000":
                 check_proof = True
             else:
