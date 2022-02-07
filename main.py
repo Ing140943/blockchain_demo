@@ -20,6 +20,8 @@ def get_chain():
 
 @app.route('/mining', methods=['GET'])
 def mining_block():
+    amount = 1000000 # money of transaction
+    blockchain.transaction = blockchain.transaction + amount
     # Proof of work
     previous_block = blockchain.get_previous_block()
     previous_nonce = previous_block["nonce"]
@@ -33,6 +35,7 @@ def mining_block():
         "message": "Mining Block Successful!",
         "index": block["index"],
         "timestamp": block["timestamp"],
+        "data": block["data"],
         "nonce": block["nonce"],
         "previous_hash": block["previous_hash"]
     }
