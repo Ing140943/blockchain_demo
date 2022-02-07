@@ -1,3 +1,4 @@
+from re import L
 from blockchain import Blockchain
 from flask import Flask, jsonify
 
@@ -35,6 +36,15 @@ def mining_block():
         "nonce": block["nonce"],
         "previous_hash": block["previous_hash"]
     }
+    return jsonify(response), 200
+
+@app.route('/is_valid', methods=["GET"])
+def is_valid():
+    is_valid = blockchain.is_chain_valid(blockchain.chain)
+    if is_valid:
+        response = {"message": "Blockchain Is Valid"}
+    else:
+        response = {"message": "Blockchain Is Not Valid"}
     return jsonify(response), 200
 
 if __name__ == "__main__":

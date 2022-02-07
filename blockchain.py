@@ -60,3 +60,20 @@ class Blockchain:
                 new_nonce += 1
         return new_nonce
 
+    def is_chain_valid(self, chain):
+        """Evaluate the block"""
+        previous_block = chain[0]
+        block_index = 1
+        while block_index < len(chain):
+            block = chain[block_index]  # block that we want to evaluate
+            if block["previous_hash"] != self.hash(previous_block):
+               return False
+            previous_nonce = previous_block["nonce"]
+            nonce = block["nonce"] # nonce of evaluated block
+            hashoperation = hashlib.sha256(str(nonce**2 - previous_nonce**2).encode()).hexdigest()
+            
+            if hashoperation[:4] != "0000":
+                return False
+            previous_block = block
+            block_index += 1
+        return True
